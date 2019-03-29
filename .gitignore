@@ -1,0 +1,4 @@
+*.blif 
+*.bin
+*.txt
+demo_C++/*.o

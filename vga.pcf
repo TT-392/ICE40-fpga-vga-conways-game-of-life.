@@ -1,0 +1,8 @@
+set_io pclk 21
+set_io b    47
+set_io g    45
+set_io r    44
+set_io D1 99
+
+set_io Hsync 61
+set_io Vsync 62
