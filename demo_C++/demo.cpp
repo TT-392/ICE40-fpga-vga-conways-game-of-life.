@@ -6,19 +6,20 @@ using namespace std;
 
 char getch();
 
+// still need to edit this code to make it more readable
 int main() {
-    bool storage[300] = {};
-    storage[250] = 1;
-    storage[251] = 1;
-    storage[252] = 1;
+    bool storage[300] = {}; 
+    storage[250] = 1;  //
+    storage[251] = 1;  // setup a little 3 cell blink
+    storage[252] = 1;  //
     bool storage_new[22] = {};
 
-    for (int i = 0; i < 22; i++) {
+    for (int i = 0; i < 22; i++) { // render old state storage
         cout << (storage_new[i] ? "■" : "□") << " ";
     }
     cout << endl << endl;
 
-    for (int y = 0; y < 15; y++) {
+    for (int y = 0; y < 15; y++) { // render rest of grid
         for (int x = 0; x < 20; x++) {
             cout << (storage[x + y * 20] ? "■" : "□") << " ";
         }
@@ -27,8 +28,8 @@ int main() {
     cout << endl << endl;
 
     while (1) {
-        char c = getch();
-        if (c == 'j' || c == 'k') {
+        char c = getch(); // get keyboard input
+        if (c == 'j' || c == 'k') { 
             // ┏━╸┏━┓┏━╸┏━┓   ┏━┓╺┳╸╻ ╻┏━╸┏━╸ //
             // ┣╸ ┣━┛┃╺┓┣━┫   ┗━┓ ┃ ┃ ┃┣╸ ┣╸  //
             // ╹  ╹  ┗━┛╹ ╹   ┗━┛ ╹ ┗━┛╹  ╹   //
@@ -44,7 +45,7 @@ int main() {
             storage_new[0] = store;
             
 
-            if (c == 'k') {
+            if (c == 'k') { // rerender if half step 'k' option is pressed
                 for (int i = 0; i < 22; i++) {
                     cout << (storage_new[i] ? "■" : "□") << " ";
                 }
@@ -60,13 +61,17 @@ int main() {
             }
 
 
+            // the actual conway stuff
+            storage[0] = ((storage_new[1] + storage_new[19] + storage_new[20] +
+            storage_new[21] + storage[279] + storage[280] + storage[281] + 
+            storage[299]) | storage[0]) == 3; 
 
-            storage[0] = ((storage_new[1] + storage_new[19] + storage_new[20] + storage_new[21] + storage[279] + storage[280] + storage[281] + storage[299]) | storage[0]) == 3;
 
-
-            ////////////////////////////////////
+            /////////////////////////////////////
+            //         end fpga stuff          // 
+            /////////////////////////////////////
             
-            if (c == 'k') getch();
+            if (c == 'k') getch(); // wait for the next half step
             for (int i = 0; i < 22; i++) {
                 cout << (storage_new[i] ? "■" : "□") << " ";
             }
@@ -81,7 +86,7 @@ int main() {
             cout << endl <<  endl;
 
         } else if (c == 'q') {
-            return 0;
+            return 0; // quit
         }
     }
 }
