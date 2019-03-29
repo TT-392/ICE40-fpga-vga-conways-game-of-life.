@@ -8,5 +8,5 @@ This project is written to be run on the ICEStick and therefore on an ice40hx1k 
 There still needs to be some work done to make the edges work correctly.
 
 ## building
-To build the project, make sure you have the icestorm toolchain installed and run make, or run make upload to make and upload to the fpga.
+To build the project, make sure you have the icestorm toolchain installed and run `make`, or run `make upload` to make and upload to the fpga.
 
